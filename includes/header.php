@@ -7,7 +7,7 @@ session_start();
 <head>
   <title>Bookstore</title>
   <link rel="stylesheet" type="text/css" href="/css/styles.css">
-  <script src="https://cdn.tailwindcss.com?plugins=aspect-ratio"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=aspect-ratio,forms"></script>
   <script src="../js/scripts.js"></script>
   <script>
     tailwind.config = {
