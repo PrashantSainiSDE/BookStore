@@ -1,4 +1,7 @@
 <?php include '../includes/header.php'; ?>
+<?php
+echo "Hello";
+print isset($_SESSION['user_id'])?>
 <main class="mx-5">
     <div class="bg-white">
         <div class="relative isolate px-6 pt-14 lg:px-8">
@@ -12,7 +15,7 @@
                 <div class="hidden sm:mb-8 sm:flex sm:justify-center">
                     <div
                         class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                        Check out our latest collection of books! <a href="#"
+                        Check out our latest collection of books! <a href="#books"
                             class="font-semibold text-indigo-600"><span class="absolute inset-0"
                                 aria-hidden="true"></span>Browse now <span aria-hidden="true">&rarr;</span></a>
                     </div>

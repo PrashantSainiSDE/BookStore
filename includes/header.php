@@ -52,7 +52,6 @@ session_start();
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
         <a href="home.php" class="text-sm font-semibold leading-6 text-gray-900">Home</a>
-        <a href="cart.php" class="text-sm font-semibold leading-6 text-gray-900">Cart</a>
         <?php if (isset($_SESSION['user_id'])): ?>
           <a href="share_book.php" class="text-sm font-semibold leading-6 text-gray-900">Share a Book</a>
         <?php endif; ?>

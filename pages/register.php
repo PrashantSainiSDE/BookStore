@@ -4,10 +4,11 @@ require_once '../includes/db.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $mysqli->real_escape_string($_POST['username']);
     $email = $mysqli->real_escape_string($_POST['email']);
+    $phone = $mysqli->real_escape_string($_POST['phone-number']);
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    $stmt = $mysqli->prepare('INSERT INTO users (username, email, password) VALUES (?, ?, ?)');
-    $stmt->bind_param('sss', $username, $email, $password);
+    $stmt = $mysqli->prepare('INSERT INTO users (username, email, phone, password) VALUES (?, ?, ?, ?)');
+    $stmt->bind_param('ssss', $username, $email, $phone, $password);
     $stmt->execute();
 
     header('Location: login.php');
@@ -38,7 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
             </div>
-
+            <div>
+                <label for="phone-number" class="block text-sm font-medium leading-6 text-gray-900">Phone number</label>
+                <div class="mt-2">
+                    <input type="tel" name="phone-number" id="phone-number" autocomplete="tel"
+                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+            </div>
             <div>
                 <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
                 <div class="mt-2">
