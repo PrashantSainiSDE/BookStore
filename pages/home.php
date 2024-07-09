@@ -1,7 +1,9 @@
-<?php include '../includes/header.php'; ?>
+<?php 
+include '../includes/header.php';
+include '../includes/db.php';
+?>
 <?php
-echo "Hello";
-print isset($_SESSION['user_id'])?>
+print isset($_SESSION['user_id']) ?>
 <main class="mx-5">
     <div class="bg-white">
         <div class="relative isolate px-6 pt-14 lg:px-8">
@@ -48,45 +50,38 @@ print isset($_SESSION['user_id'])?>
                 <h2 class="text-2xl font-bold tracking-tight text-gray-900">Books</h2>
 
                 <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                    <?php
+                    $result = $mysqli->query('SELECT * FROM books where user_id = 2');
+                    while ($book = $result->fetch_assoc()):
+
+                    ?>
                     <div class="group relative">
                         <div
                             class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                            <img src="https://images.inc.com/uploaded_files/image/1920x1080/getty_655998316_2000149920009280219_363765.jpg"
-                                alt="Front of men&#039;s Basic Tee in black."
+                            <img src=<?php echo htmlspecialchars($book['image'])?>
+                                alt=<?php echo htmlspecialchars($book['title'])?>
                                 class="h-full w-full object-cover object-center lg:h-full lg:w-full">
                         </div>
                         <div class="mt-4 flex justify-between">
                             <div>
                                 <h3 class="text-sm text-gray-700">
-                                    <a href="#">
+                                    
+                                    <a href="detail_view.php?book_id=<?php echo htmlspecialchars($book['id']); ?>">
                                         <span aria-hidden="true" class="absolute inset-0"></span>
-                                        Basic Book
+                                        <?php echo htmlspecialchars(ucfirst($book['title']))?>
                                     </a>
                                 </h3>
-                                <p class="mt-1 text-sm text-gray-500">Author</p>
+                                <p class="mt-1 text-sm text-gray-500"><?php echo htmlspecialchars(ucfirst($book['author']))?></p>
                             </div>
-                            <p class="text-sm font-medium text-gray-900">$35</p>
+                            <p class="text-sm font-medium text-gray-900"><?php echo htmlspecialchars(ucfirst($book['genre']))?></p>
                         </div>
                     </div>
-
-                    <!-- More products... -->
+                    <?php endwhile;?>
                 </div>
             </div>
         </div>
 
     </section>
-    <?php
-    // $result = $mysqli->query('SELECT * FROM books');
-// while ($book = $result->fetch_assoc()) {
-//     echo '<div>';
-//     echo '<h3>' . htmlspecialchars($book['title']) . '</h3>';
-//     echo '<p>by ' . htmlspecialchars($book['author']) . '</p>';
-//     echo '<p>$' . htmlspecialchars($book['price']) . '</p>';
-//     echo '<p>' . htmlspecialchars($book['description']) . '</p>';
-//     echo '<a href="add_to_cart.php?id=' . $book['id'] . '">Add to Cart</a>';
-//     echo '</div>';
-// }
-    ?>
 </main>
 
 <?php include '../includes/footer.php' ?>
