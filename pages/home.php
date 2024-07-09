@@ -2,8 +2,6 @@
 include '../includes/header.php';
 include '../includes/db.php';
 ?>
-<?php
-print isset($_SESSION['user_id']) ?>
 <main class="mx-5">
     <div class="bg-white">
         <div class="relative isolate px-6 pt-14 lg:px-8">
@@ -51,7 +49,7 @@ print isset($_SESSION['user_id']) ?>
 
                 <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                     <?php
-                    $result = $mysqli->query('SELECT * FROM books where user_id = 2');
+                    $result = $mysqli->query('SELECT * FROM books');
                     while ($book = $result->fetch_assoc()):
 
                     ?>
