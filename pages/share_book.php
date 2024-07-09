@@ -1,6 +1,6 @@
 <?php
-session_start();
 require_once '../includes/db.php';
+include '../includes/header.php'; 
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
@@ -24,8 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     exit;
 }
 ?>
-
-<?php include '../includes/header.php'; ?>
 
 <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
   <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]" aria-hidden="true">

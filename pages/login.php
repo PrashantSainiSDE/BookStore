@@ -1,4 +1,5 @@
 <?php
+include '../includes/header.php';
 require_once '../includes/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -20,10 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error = 'Invalid username or password';
     }
 }
-?>
-
-<?php include '../includes/header.php'; ?>
-  
+?>  
 
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
