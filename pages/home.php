@@ -1,4 +1,4 @@
-<?php 
+<?php
 include '../includes/header.php';
 include '../includes/db.php';
 ?>
@@ -50,31 +50,44 @@ include '../includes/db.php';
                 <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                     <?php
                     $result = $mysqli->query('SELECT * FROM books');
-                    while ($book = $result->fetch_assoc()):
-
-                    ?>
-                    <div class="group relative">
-                        <div
-                            class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                            <img src=<?php echo htmlspecialchars($book['image'])?>
-                                alt=<?php echo htmlspecialchars($book['title'])?>
-                                class="h-full w-full object-cover object-center lg:h-full lg:w-full">
-                        </div>
-                        <div class="mt-4 flex justify-between">
+                    if ($result->num_rows < 1):
+                        ?>
+                        <div class="bg-white">
                             <div>
-                                <h3 class="text-sm text-gray-700">
-                                    
-                                    <a href="detail_view.php?book_id=<?php echo htmlspecialchars($book['id']); ?>">
-                                        <span aria-hidden="true" class="absolute inset-0"></span>
-                                        <?php echo htmlspecialchars(ucfirst($book['title']))?>
-                                    </a>
-                                </h3>
-                                <p class="mt-1 text-sm text-gray-500"><?php echo htmlspecialchars(ucfirst($book['author']))?></p>
+                                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Empty Records</h2>
+                                <p class="mt-4 text-gray-500">Currently, no books are available. Please check back later or
+                                    share your own books with our community.</p>
                             </div>
-                            <p class="text-sm font-medium text-gray-900"><?php echo htmlspecialchars(ucfirst($book['genre']))?></p>
                         </div>
-                    </div>
-                    <?php endwhile;?>
+                        <?php
+                    else:
+                        while ($book = $result->fetch_assoc()):
+                            ?>
+                            <div class="group relative">
+                                <div
+                                    class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                                    <img src=<?php echo htmlspecialchars($book['image']) ?> alt=<?php echo htmlspecialchars($book['title']) ?>
+                                        class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                                </div>
+                                <div class="mt-4 flex justify-between">
+                                    <div>
+                                        <h3 class="text-sm text-gray-700">
+
+                                            <a href="detail_view.php?book_id=<?php echo htmlspecialchars($book['id']); ?>">
+                                                <span aria-hidden="true" class="absolute inset-0"></span>
+                                                <?php echo htmlspecialchars(ucfirst($book['title'])) ?>
+                                            </a>
+                                        </h3>
+                                        <p class="mt-1 text-sm text-gray-500">
+                                            <?php echo htmlspecialchars(ucfirst($book['author'])) ?>
+                                        </p>
+                                    </div>
+                                    <p class="text-sm font-medium text-gray-900">
+                                        <?php echo htmlspecialchars(ucfirst($book['genre'])) ?>
+                                    </p>
+                                </div>
+                            </div>
+                        <?php endwhile; endif; ?>
                 </div>
             </div>
         </div>
